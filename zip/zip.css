@@ -1,0 +1,39 @@
+.container-1,
+.container-2 {
+  display: list-item;
+  padding: 10px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.container-2-half {
+  text-align: right;
+  width: 97%;
+}
+.big-container-1 {
+  border: 1px solid black;
+}
+p,
+h1 {
+  text-align: center;
+}
+h1 {
+  padding: 10px;
+}
+
+em {
+  text-align: right;  
+}
+
+.country-code {
+    padding: 10px;
+    float: left;
+    width: 100%;
+}
+
+.country-code-text {
+    float: right;
+}
+

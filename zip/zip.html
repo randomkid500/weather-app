@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>City</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="zip.css" />
+</head>
+
+<body>
+    <div class="big-container-1">
+        <div id="input-div" class="container-1">
+            Enter a zip code:
+            <input placeholder="Ex: 10001 (New York)" id="zip-input" type="text" />
+            <br>
+            <div class="country-code">
+                Enter country code:
+                <input placeholder="Ex: US" id="country-code-input" type="text" />
+                <em>*Optional if country is inside U.S.</em>
+            </div>
+        </div>
+        <div class="container-2">
+            <a id="submit" class="btn btn-primary">Submit</a>
+        </div>
+        <div class="container-2-half">
+            <em>*Note: If the graph does not display after clicking submit, try pressing ctrl-shift-i (cmd-shift-c on
+                mac) twice</em>
+        </div>
+    </div>
+    <div id="big-container-2" class="big-container-2">
+        <div id="canvas-div" class="container-3"></div>
+        <div id="elements-div" class="container-4"></div>
+    </div>
+</body>
+
+<script src="zip.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script></script>
+</html>
