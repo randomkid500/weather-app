@@ -1,8 +1,8 @@
 document.querySelector("#submit").addEventListener("click", onSubmit);
 
 //define your own keys here:
-const openWeatherApiKey;
-const weatherApiKey;
+const openWeatherApiKey = config.openWeatherApiKey;
+const weatherApiKey = config.weatherApiKey;
 
 let textBox = document.getElementById("zip-input");
 textBox.addEventListener("keydown", (event) => {
