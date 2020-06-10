@@ -1,7 +1,8 @@
 document.querySelector("#submit").addEventListener("click", onSubmit);
 
-const openWeatherApiKey = 'e52d04faf9791cb59328bb593790255b';
-const weatherApiKey = '2c643fd3fdb2441ebd564045200606';
+//define your own keys here:
+const openWeatherApiKey;
+const weatherApiKey;
 
 let textBox = document.getElementById("input");
 textBox.addEventListener("keydown", (event) => {
