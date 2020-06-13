@@ -19,3 +19,11 @@
 #header {
   padding: 10px;
 }
+
+body {
+  background-color: #292929;
+}
+
+h2, p {
+  color: aliceblue;
+}

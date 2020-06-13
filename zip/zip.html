@@ -2,41 +2,87 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Zip code</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="zip.css" />
+    <meta charset="UTF-8">
+    <title>Zip Code</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="zip.css">
 </head>
 
 <body>
     <div class="big-container-1">
         <div id="input-div" class="container-1">
-            Enter a zip code:
-            <input placeholder="Ex: 10001 (New York)" id="zip-input" type="text" />
-            <br>
-            <div class="country-code">
-                Enter country code:
-                <input placeholder="Ex: US" id="country-code-input" type="text" />
-                <em>*Optional if country is inside U.S.</em>
-            </div>
+            <form class="form " accept-charset="UTF-8" method="post">
+                <input name="utf8" type="hidden" value="✓">
+                <div class="FormField">
+                    <label class="">
+                        <div class="FormField__Label">Enter a zip code:</div>
+                        <!-- zip input -->
+                        <input autofocus="autofocus" class="input" id="zip-input" type="text" placeholder="Ex: 10001 (New York)">
+                    </label>
+                </div>
+                <br>
+                <div class="FormField">
+                    <label class="">
+                        <div class="FormField__Label">Enter country code:</div> 
+                        <!-- country code input -->
+                        <input class="input" placeholder="Ex: US" id="country-code-input">
+                    </label>
+                </div>
+            </form>
         </div>
         <div class="container-2">
             <a id="submit" class="btn btn-primary">Submit</a>
         </div>
-        <div class="container-2-half">
-            <em>*Note: If the graph does not display after clicking submit, try pressing ctrl-shift-i (cmd-shift-c on
-                mac) twice</em>
+        <div class="container-2-three-fourths">
+            <div class="select-field">
+                <b id="color-bold">Graph colors:</b>
+                <form id="color-form" action="">
+                    <br>
+                    <select id="drop-down-colors" name="backdrop" class="btn btn-secondary dropdown-toggle"
+                        onchange="onColorsChange()">
+                        <option value="red">Red</option>
+                        <option value="orange">Orange</option>
+                        <option value="yellow">Yellow</option>
+                        <option value="green">Green</option>
+                        <option value="blue">Blue</option>
+                        <option value="purple">Purple</option>
+                        <option value="transparent">Transparent</option>
+                    </select>
+                </form>
+            </div>
+            <div class="select-field">
+                <b id="days-bold">Specify the amount of days:</b>
+                <form id="days-form" action="">
+                    <br>
+                    <select id="drop-down-days" name="backdrop" class="btn btn-secondary dropdown-toggle"
+                        onchange="onDaysChange()">
+                        <option value="7">Past week</option>
+                        <option value="6">Past 6 days</option>
+                        <option value="5">Past 5 days</option>
+                        <option value="4">Past 4 days</option>
+                        <option value="3">Past 3 days</option>
+                        <option value="2">Past 2 days</option>
+                        <option value="1">Past day</option>
+                    </select>
+                </form>
+            </div>
+
         </div>
+
     </div>
     <div id="big-container-2" class="big-container-2">
+
         <div id="canvas-div" class="container-3"></div>
+        <div class="container-2-half">
+        </div>
         <div id="elements-div" class="container-4"></div>
     </div>
+
+    <script type="text/javascript" src="../config.js"></script>
+    <script src="zip.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script></script>
 </body>
 
-<script type='text/javascript' src='../config.js'></script>
-<script src="zip.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-<script></script>
 </html>

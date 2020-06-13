@@ -16,7 +16,7 @@ function onSubmit() {
 	let countryCode = document.getElementById('country-code-input').value;
 
 	let errorMessage = document.createElement("p");
-	errorMessage.style.color = "red";
+	errorMessage.style.color = "rgb(237, 100, 90)";
 	errorMessage.textContent = "Please enter a zip code";
 	errorMessage.className = "error-message";
 	errorMessage.id = "error";
@@ -40,11 +40,10 @@ function makeApiCall(zipCode, countryCode) {
 	const openWeatherApiCall = `http://api.openweathermap.org/data/2.5/weather?zip=${zipCode},${countryCode}&appid=${openWeatherApiKey}&units=imperial`;
 
 	$.getJSON(openWeatherApiCall, function(data) {
-		console.log(data);
 		
 		allh1s = document.getElementsByTagName("h1");
 		//data is the whole json object
-		console.log(data);
+		//debugging: console.log(data);
 
 		if (allh1s.length === 0) {
 			addElements(data, zipCode);
@@ -103,7 +102,27 @@ function addElements(data, zipCode) {
 	addGraph(zipCode);
 }
 
+function onDaysChange() {
+	let dropDownDays = document.getElementById('drop-down-days');
+	return dropDownDays.value;
+}
+
+function onColorsChange() {
+	let dropDownColors = document.getElementById('drop-down-colors');
+	return dropDownColors.value;
+}
+
 function addGraph(zipCode) {
+
+	let colors = {
+		red: '255, 68, 0', //rgb colors 
+		orange: '255, 200, 0',
+		yellow: '255, 251, 0',
+		green: '119, 255, 0',
+		blue: '0, 149, 255',
+		purple: '183, 0, 255',
+		transparent: 'transparent',
+	}
 	let months = {
 		'Jan': 01,
 		'Feb': 02,
@@ -123,7 +142,7 @@ function addGraph(zipCode) {
 
 	let i;
 	//i starts at 7, and decrements all the way down to 0
-	for (i = 7; i >= 0; i--) {
+	for (i = onDaysChange(); i >= 0; i--) {
 		//Change it so that it is i days in the past.
 		let currDate = new Date();
 
@@ -149,39 +168,94 @@ function addGraph(zipCode) {
 			//append temps
 			temps.push(avgTempForEachDay);
 			days.push(`${words[1]} ${takeAwayZero(day)}`); //start of the array will be the most recent temps
-			console.log(pastFullDay, avgTempForEachDay);
+			debugging: console.log(pastFullDay, avgTempForEachDay);
 		})
 	}
-	//create canvas
-	canvasDiv = document.getElementById('canvas-div');
+	//!creates canvas
 	let canvas = document.createElement('canvas');
+	let canvasDiv = document.getElementById('canvas-div');
+	canvas.id = 'lineChart';
 	canvasDiv.appendChild(canvas);
-	canvas.id = 'myChart';
 
-	var ctx = canvas.getContext('2d');
-	var chart = new Chart(ctx, {
-		// The type of chart we want to create
+	var ctxL = document.getElementById("lineChart").getContext('2d');
+
+	var gradientFill = ctxL.createLinearGradient(0, 0, 0, 290);
+
+	let graphColor = computeColor(onColorsChange(), colors);
+
+	let information = {
 		type: 'line',
-
-		// The data for our dataset
 		data: {
 			labels: days,
-			datasets: [{
-				label: 'Average temperature for each day within the past week',
-				backgroundColor: 'rgb(39, 174, 219)',
-				borderColor: 'black',
-				data: temps,
-			}]
+			datasets: [
+				{
+					label: "Average temperature",
+					data: temps,
+					backgroundColor: gradientFill,
+					borderColor: [
+						'black',
+					],
+					borderWidth: 2,
+					pointBorderColor: "#fff",
+					pointBackgroundColor: "rgba(173, 53, 186, 0.1)",
+				}
+			]
 		},
-
-		// Configuration options go here
 		options: {
-			hover: {
-				// Overrides the global setting
-				mode: 'index'
-			}
-		}
-	});
+			responsive: true,
+			responsiveAnimationDuration: 1000,
+			legend: {
+				labels: {
+					fontColor: "white",
+					fontSize: 18,
+				}
+
+			},
+			scales: {
+				yAxes: [{ ticks: { fontColor: "aliceblue", } }],
+
+				xAxes: [{ ticks: { fontColor: "aliceblue", } }],
+			},
+		},
+	};
+
+	if (colors[onColorsChange()] != 'transparent') {
+		gradientFill.addColorStop(0, `rgba(${graphColor}, 1)`);
+		gradientFill.addColorStop(1, `rgba(${graphColor}, 0.3)`);
+		/*information.options.scales.yAxes[0].ticks.fontColor = `rgb(${computeColor(onColorsChange(), colors)}`;
+		information.options.scales.xAxes[0].ticks.fontColor = `rgb(${computeColor(onColorsChange(), colors)}`; */
+
+	} else if (colors[onColorsChange()] === 'transparent') {
+		gradientFill.addColorStop(0, `rgba(0, 0, 0, 0)`);
+		gradientFill.addColorStop(1, `rgba(0, 0, 0, 0)`);
+		information.data.datasets[0].borderColor = 'white';
+		/*information.options.scales.yAxes[0].ticks.fontColor = `white`;
+		information.options.scales.xAxes[0].ticks.fontColor = `white`; */
+
+	}
+
+	var myLineChart = new Chart(ctxL, information);
+
+	let note = document.createElement('em');
+	note.id = 'note';
+	note.className = 'note';
+
+	let noteDiv = document.querySelector('.container-2-half');
+	let allNotes = noteDiv.getElementsByTagName('em');
+	console.log(allNotes.length);
+
+
+	if (allNotes.length === 0) {
+		noteDiv.appendChild(note);
+
+	} else if (allNotes.length === 1) {
+		noteDiv.innerHTML = '';
+		noteDiv.appendChild(note);
+	}
+
+	note.textContent = '*Note: If the graph does not display after clicking submit, try pressing ctrl-shift-i (cmd-shift-c on mac) twice';
+	noteDiv.appendChild(note);
+	noteDiv.appendChild(document.createElement('br'));
 }
 
 function takeAwayZero(number) {
@@ -193,4 +267,8 @@ function takeAwayZero(number) {
 
 function computeMonth(month, months) {
 	return months[month];
+}
+
+function computeColor(color, colors) {
+	return colors[color];
 }
