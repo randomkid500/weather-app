@@ -1,5 +1,3 @@
-# weather-app
-
 Web application that displays information regarding the weather outside a designated area.
 
 It uses:
