@@ -2,6 +2,6 @@ Web application that displays information regarding the weather outside a design
 
 It uses:
 
--   [weather API](https://www.weatherapi.com/)
--   [open weather map API](https://openweathermap.org/)
--   [chart.js](chartjs.org/) (For the graph)
+-   [Weather API](https://www.weatherapi.com/)
+-   [Open Weather Map API](https://openweathermap.org/)
+-   [Chart.js](chartjs.org/) (For the graph)
