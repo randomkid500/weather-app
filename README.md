@@ -8,4 +8,11 @@ It uses:
 
 View it right here: https://vineetrao06.github.io/WeatherApp/
 
-*Note: You'll have to define your own config element with your own keys for it to work. 
+*Note: You'll have to define your own config.js file with your own keys for it to work. It should be in the parent directory and the format should look something like this: 
+
+<code>
+var config = {
+    openWeatherApiKey: 'your key',
+    weatherApiKey: 'your key',
+}  
+<code>
