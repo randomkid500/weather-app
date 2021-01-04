@@ -7,3 +7,5 @@ It uses:
 -   [Chart.js](chartjs.org/) (For the graph)
 
 View it right here: https://vineetrao06.github.io/WeatherApp/
+
+*Note: You'll have to define your own config element with your own keys for it to work. 
