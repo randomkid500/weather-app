@@ -1,5 +1,5 @@
 Web application that displays information regarding the weather outside a designated area.
-***Note: You'll have to put your own keys for it to work. Refer to [city.js](city/city.js) and [zip.js](zip/zip.js)
+***Note: You'll have to put your own keys for it to work. Refer to [city.js](city/city.js) and [zip.js](zip/zip.js)**
 
 It uses:
 
