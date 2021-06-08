@@ -1,4 +1,5 @@
 Web application that displays information regarding the weather outside a designated area.
+***Note: You'll have to put your own keys for it to work. Refer to [city.js](city/city.js) and [zip.js](zip/zip.js)
 
 It uses:
 
@@ -8,7 +9,6 @@ It uses:
 
 View it right here: https://vineetrao06.github.io/WeatherApp/
 
-***Note**: You'll have to put your own keys for it to work. Refer to [city.js](city/city.js) and [zip.js](zip/zip.js)
 
 ```javascript
 //define your own keys here:
